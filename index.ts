@@ -22,9 +22,9 @@ const db = new Database()
 const PORT = 80
 
 const options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/example.com/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/example.com/fullchain.pem'),
-}
+  key: fs.readFileSync('/etc/letsencrypt/live/lbbttujj.ru/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/lbbttujj.ru/fullchain.pem')
+};
 
 const app = express()
 app.use(express.json())
