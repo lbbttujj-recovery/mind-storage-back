@@ -19,7 +19,7 @@ const getScene = new Scenes.BaseScene<Scenes.SceneContext>('GET')
 
 const bot = new Telegraf<MyContext>(process.env.TELEGRAM_TOKEN || '')
 const db = new Database()
-const PORT = 80
+const PORT = 443
 
 const options = {
   key: fs.readFileSync('/etc/letsencrypt/live/lbbttujj.ru/privkey.pem'),
