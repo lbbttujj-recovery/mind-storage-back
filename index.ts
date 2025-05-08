@@ -9,6 +9,9 @@ import cors from 'cors'
 const dotenv = require('dotenv')
 import Database, { getToday, dateToISOFormat } from './dataBase/dataBase'
 dotenv.config()
+import fs from 'fs'
+import https from 'https'
+import http from 'http'
 
 const addMindScene = new Scenes.BaseScene<Scenes.SceneContext>('ADD_MIND')
 const filterScene = new Scenes.BaseScene<Scenes.SceneContext>('FILTER')
@@ -17,6 +20,11 @@ const getScene = new Scenes.BaseScene<Scenes.SceneContext>('GET')
 const bot = new Telegraf<MyContext>(process.env.TELEGRAM_TOKEN || '')
 const db = new Database()
 const PORT = 80
+
+const options = {
+  key: fs.readFileSync('/etc/letsencrypt/live/example.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/example.com/fullchain.pem'),
+}
 
 const app = express()
 app.use(express.json())
@@ -260,6 +268,14 @@ app.delete('/items', (req, res) => {
     })
 })
 
-app.listen(PORT, () => {
-  console.log('backend running port ', PORT)
+https.createServer(options, app).listen(PORT, () => {
+  console.log(`HTTPS server running on port ${PORT}`)
 })
+
+// Редирект HTTP → HTTPS
+http
+  .createServer((req, res) => {
+    res.writeHead(301, { Location: 'https://' + req.headers['host'] + req.url })
+    res.end()
+  })
+  .listen(80)
