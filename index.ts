@@ -167,18 +167,10 @@ bot.action('get', (ctx) => {
 })
 
 bot.action('app', (ctx) => {
-  ctx.reply('Привет! Нажми на кнопку, чтобы открыть мини-приложение:', {
-    reply_markup: {
-      inline_keyboard: [
-        [
-          {
-            text: 'Открыть мини-приложение',
-            url: 'https://mind-storage-front.vercel.app/',
-          },
-        ],
-      ],
-    },
-  })
+  ctx.reply(
+    'Запускаем мини-приложение:',
+    Markup.keyboard([[Markup.button.webApp('Открыть мини-апп', 'http://t.me/MndSorageBot/MindStorage')]]).resize(),
+  )
 })
 
 bot.action('random', (ctx) => {
