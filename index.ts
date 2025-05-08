@@ -188,6 +188,22 @@ bot.launch(() => {
   console.log('bot launch')
 })
 
+bot.start((ctx) => {
+  // Сообщение с кнопкой
+  return ctx.reply('Привет! Нажми на кнопку, чтобы открыть мини-приложение:', {
+    reply_markup: {
+      inline_keyboard: [
+        [
+          {
+            text: 'Открыть мини-приложение',
+            url: 'https://lbbttujj.ru',  // URL твоего сайта
+          },
+        ],
+      ],
+    },
+  });
+});
+
 app.get('/items/random', (req, res) => {
   db.getAllMindsNotion().then((resolve) => {
     const length = resolve.length - 1
