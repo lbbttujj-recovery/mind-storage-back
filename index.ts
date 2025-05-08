@@ -196,7 +196,7 @@ bot.start((ctx) => {
         [
           {
             text: 'Открыть мини-приложение',
-            url: 'https://lbbttujj.ru',  // URL твоего сайта
+            url: 'https://mind-storage-front.vercel.app/',
           },
         ],
       ],
