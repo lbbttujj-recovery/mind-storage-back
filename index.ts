@@ -54,6 +54,7 @@ const mainKeyboard = Markup.inlineKeyboard([
   [Markup.button.callback('🔍 Фильтр', 'filter')],
   [Markup.button.callback('∆ Получить', 'get')],
   [Markup.button.callback('➕ Добавить мысль', 'add')],
+  [Markup.button.callback('Открыть приложение', 'app')],
 ])
 
 filterScene
@@ -165,6 +166,21 @@ bot.action('get', (ctx) => {
   ctx.answerCbQuery()
 })
 
+bot.action('app', (ctx) => {
+  ctx.reply('Привет! Нажми на кнопку, чтобы открыть мини-приложение:', {
+    reply_markup: {
+      inline_keyboard: [
+        [
+          {
+            text: 'Открыть мини-приложение',
+            url: 'https://mind-storage-front.vercel.app/',
+          },
+        ],
+      ],
+    },
+  })
+})
+
 bot.action('random', (ctx) => {
   db.getAllMindsNotion().then((res) => {
     const length = res.length - 1
@@ -187,22 +203,6 @@ bot.action('random', (ctx) => {
 bot.launch(() => {
   console.log('bot launch')
 })
-
-bot.start((ctx) => {
-  // Сообщение с кнопкой
-  return ctx.reply('Привет! Нажми на кнопку, чтобы открыть мини-приложение:', {
-    reply_markup: {
-      inline_keyboard: [
-        [
-          {
-            text: 'Открыть мини-приложение',
-            url: 'https://mind-storage-front.vercel.app/',
-          },
-        ],
-      ],
-    },
-  });
-});
 
 app.get('/items/random', (req, res) => {
   db.getAllMindsNotion().then((resolve) => {
