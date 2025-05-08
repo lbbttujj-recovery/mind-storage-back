@@ -16,7 +16,7 @@ const getScene = new Scenes.BaseScene<Scenes.SceneContext>('GET')
 
 const bot = new Telegraf<MyContext>(process.env.TELEGRAM_TOKEN || '')
 const db = new Database()
-const PORT = 3001
+const PORT = 80
 
 const app = express()
 app.use(express.json())
