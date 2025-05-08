@@ -23,8 +23,8 @@ const PORT = 443
 
 const options = {
   key: fs.readFileSync('/etc/letsencrypt/live/lbbttujj.ru/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/lbbttujj.ru/fullchain.pem')
-};
+  cert: fs.readFileSync('/etc/letsencrypt/live/lbbttujj.ru/fullchain.pem'),
+}
 
 const app = express()
 app.use(express.json())
@@ -206,6 +206,10 @@ app.get('/items/random', (req, res) => {
 
     res.json(result)
   })
+})
+
+app.get('/', (req, res) => {
+  res.json('test')
 })
 
 app.get('/items', (req, res) => {
