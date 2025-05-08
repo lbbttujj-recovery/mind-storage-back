@@ -1,0 +1,19 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:prettier/recommended",
+    "prettier",
+    "eslint:recommended"
+  ],
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "no-var": "error",
+    "no-unused-vars": "warn",
+    "no-multi-spaces": "warn",
+    "no-console": "off",
+    "no-undef": "off",
+    "space-in-parens": "warn",
+    "no-multiple-empty-lines": "warn",
+    "prefer-const": "error"
+  }
+}
